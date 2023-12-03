@@ -1,0 +1,11 @@
+Model Information:
+* title:	Megalodon
+* source:	https://sketchfab.com/3d-models/megalodon-a311be02d8fe4e86a33edc7426245e03
+* author:	Aiden Vang (https://sketchfab.com/vang807)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Megalodon" (https://sketchfab.com/3d-models/megalodon-a311be02d8fe4e86a33edc7426245e03) by Aiden Vang (https://sketchfab.com/vang807) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

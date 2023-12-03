@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica Entregable Sergio Frisuelos Grzybowski</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.1.0/dist/aframe-extras.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+	<!--ESCENA PARA VR -->
+    <a-scene>
+    
+    <a-circle id="origen" position="0 -0.25 -100" visible="false"></a-circle>
+    
+    <!-- CREAMOS EL SUELO -->
+        <!-- <a-plane position="0 -40 0" rotation="-90 0 0" width="100" height="100" color="#C2B280"></a-plane> -->
+
+		<!-- CARGAMOS ASSETS PARA EL PROYECTO -->
+        <a-assets>
+            <img src="textures/sea2.jpg" id="sea">
+            <a-asset-item id="clownFish" response-type="arraybuffer" src="textures/pezPayaso.glb"></a-asset-item>
+            <a-asset-item id="Shark" response-type="arraybuffer" src="textures/tiburon.glb"></a-asset-item>
+            <a-asset-item id="Harpoon" src="textures/harpoonTextures/scene.gltf"></a-asset-item>
+        </a-assets>
+        
+        <a-sound id="sonidoTiburon" src="sounds/jaws.mp3"></a-sound>
+        <a-sound id="sonidoVictoria" src="sounds/victoria.mp3"></a-sound>
+        <a-sound id="sonidoDerrota" src="sounds/derrota.mp3"></a-sound>
+
+		<!-- CREAMOS ENTORNO (CIELO) -->
+        <a-sky src="#sea"></a-sky>
+
+		<!-- CREAMOS ENTIDADES DE ÓRBITAS EN LA QUE SE UBICARÁN LOS METEORITOS -->
+        <a-entity class="orbit" position="0 1 0" rotation="0 0 0"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 60000;  easing: linear">
+        </a-entity>
+
+        <!-- ENTIDAD PARA DECLARACIÓN MANUAL DE METEORITO (NO LOS ESTABLECEREMOS ASÍ)
+        <a-entity geometry="primitive:sphere; radius:3" material="shader:flat; src:#meteor" position="0 0 -10"></a-entity>
+        -->
+		<!-- ENTIDAD PARA LA CAMARA Y LOS CONTROLES DE CÁMARA POR MIRADA -->
+        <a-entity id="camara" camera look-controls="enabled: true">
+
+            <!--ELEMENTO PARA EL TEXTO-->
+            <a-text id="textoCapturas" value="0 PECES ATRAPADOS" color="white" position="0 -0.1 -1" width="1" align="center" visible="true"></a-text>
+            
+            <a-text id="vidasTiburon" value="10 VIDAS" color="white" position="0 0.5 -1" width="1" align="center" visible="false"></a-text>
+
+            <!-- ELEMENTO CURSOR PARA CREAR INTERACCIÓN CON METEORITOS (FUSE = CUANDO ESTÉ EN UN ELEMENTO)-->
+            <a-entity id="puntero" cursor="fuse: false" position="0 0 -1" raycaster="objects: .pez"
+                geometry="primitive: ring; radiusInner: 0; radiusOuter: 0.006" material="shader: flat" visible="true"></a-entity>
+                <!-- RAYCASTER: MEJORAMOS RENDIMIENTO PARA NO LANZAR CLICK CONTINUAMENTE-->
+
+                <a-entity id="harpon" gltf-model="#Harpoon" color="white" position="0.1 -0.1 -0.15" rotation="-30 -90 90" scale="0.1 0.1 0.1" visible="true"></a-entity>
+                <!-- RAYCASTER: MEJORAMOS RENDIMIENTO PARA NO LANZAR CLICK CONTINUAMENTE-->
+                
+                <!-- Pantalla de Game Over (inicialmente invisible) -->
+            <a-plane id="gameOverScreen" position="0 0 -1" rotation="0 0 0" width="4" height="2" color="red" visible="false">
+              <!-- Texto de Game Over -->
+              <a-text value="Game Over" align="center" color="white" width="4"></a-text>
+              <a-text value="La partida se va a reiniciar en breves" align="center" position="0 -0.4 0" scale="0.3 0.3 0.3"></a-text>
+            </a-plane>
+               
+               <!-- Pantalla de Victoria (inicialmente invisible) -->
+            <a-plane id="winScreen" position="0 0 -1" rotation="0 0 0" width="4" height="2" color="green" visible="false">
+              <!-- Texto de Game Over -->
+              <a-text value="Enhorabuena!" align="center" color="white" width="4"></a-text>
+              <a-text value="La partida se va a reiniciar en breves" align="center" position="0 -0.4 0" scale="0.3 0.3 0.3"></a-text>
+            </a-plane>
+                
+        </a-entity>
+        
+      
+    </a-scene>
+
+</body>
+
+</html>
